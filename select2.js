@@ -694,7 +694,7 @@ the specific language governing permissions and limitations under the Apache Lic
             this.dropdown = this.container.find(".select2-drop");
 
             syncCssClasses(this.dropdown, this.opts.element, this.opts.adaptDropdownCssClass);
-            
+
             this.dropdown.addClass(evaluate(opts.dropdownCssClass));
             this.dropdown.data("select2", this);
 
@@ -2816,7 +2816,12 @@ the specific language governing permissions and limitations under the Apache Lic
             }
 
             choice.data("select2-data", data);
-            choice.insertBefore(this.searchContainer);
+
+            if(this.opts.choices_container !== undefined) {
+                $(this.opts.choices_container).addClass('select2-choices').append(choice);
+            } else {
+                choice.insertBefore(this.searchContainer);
+            }
 
             val.push(id);
             this.setVal(val);
